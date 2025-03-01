@@ -1,13 +1,15 @@
+@use "../../helpers";
+
 
 .program-input{
-    background-color: $background-light;
+    background-color: helpers.$background-light;
     padding: 30px;
     border-radius: 7.5px;
 
 
     &-field{
         width: 100%;
-        background-color: $background-dark;
+        background-color: helpers.$background-dark;
         border-radius: 7.5px;
         border: 1px solid rgba(255, 255, 255, 0.10);
         color: #fdc667;
@@ -19,7 +21,7 @@
             outline: none;
         }
 
-        scrollbar-color: $background-dark #424242;
+        scrollbar-color: helpers.$background-dark #424242;
         scrollbar-width: thin;
     }
 }

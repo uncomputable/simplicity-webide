@@ -1,26 +1,26 @@
-@import 'helpers.scss';
-@import 'components/analysis.scss';
-@import 'components/program_window/program_input.scss';
-@import 'components/merkle.scss';
-@import 'components/merkle_graph.scss';
-@import 'components/navbar.scss';
-@import 'components/string_box.scss';
-@import 'components/tab_content.scss';
-@import 'components/tooltip.scss';
-@import 'components/footer.scss';
+@use 'helpers.scss';
+@use 'components/analysis.scss';
+@use 'components/program_window/program_input.scss';
+@use 'components/merkle.scss';
+@use 'components/merkle_graph.scss';
+@use 'components/navbar.scss';
+@use 'components/string_box.scss';
+@use 'components/tab_content.scss';
+@use 'components/tooltip.scss';
+@use 'components/footer.scss';
 
 * {
     box-sizing: border-box;
 }
 
 html {
-    scrollbar-color: $background-dark #424242;
+    scrollbar-color: helpers.$background-dark #424242;
     scrollbar-width: thin;
 }
 
 body {
-    background-color: $body-background;
-    color: $text-white;
+    background-color: helpers.$body-background;
+    color: helpers.$text-white;
     font-family: 'inter', sans-serif;
 }
 

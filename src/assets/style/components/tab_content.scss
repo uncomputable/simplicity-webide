@@ -1,4 +1,3 @@
-
 .tab-content{
     padding: 10px;
     background: #1d2127;
@@ -47,7 +46,7 @@
 // key store tab
 .key-store-tab{
     .copy-button{
-        @extend .flat-button;
+        @extend .flat-button !optional;
     }
 
     .key-store-display-row{
@@ -74,7 +73,7 @@
 
 .hash-store-tab{
     .copy-button{
-        @extend .flat-button;
+        @extend .flat-button !optional;
     }
 }
 

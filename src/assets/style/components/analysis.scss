@@ -1,8 +1,9 @@
+@use "../helpers";
 
 .analysis {
     margin-top: 40px;
     padding: 30px;
-    background-color: $background-light;
+    background-color: helpers.$background-light;
     border-radius: 7.5px;
 
     .analysis-header {
@@ -54,18 +55,18 @@
             
             border: 1px solid rgba(255, 255, 255, 0.10);
             padding: 20px;
-            background-color: $background-dark;
+            background-color: helpers.$background-dark;
 
             .analysis-item-label {
                 font-family: 'rigid-square';
-                color: $text-white;
+                color: helpers.$text-white;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 700;
                 line-height: normal;
             }
             .analysis-item-data {
-                color: $text-grey;
+                color: helpers.$text-grey;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
@@ -82,7 +83,7 @@
         padding: 10px;
         overflow-x: scroll;
 
-        scrollbar-color: $background-dark #b00000;
+        scrollbar-color: helpers.$background-dark #b00000;
         scrollbar-width: thin;
     }
 

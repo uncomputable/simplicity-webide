@@ -7,7 +7,6 @@ use crate::components::state::update_local_storage;
 pub fn RunButton() -> impl IntoView {
     let program = use_context::<Program>().expect("program should exist in context");
     let runtime = use_context::<Runtime>().expect("runtime should exist in context");
-    let audio_ref = runtime.alarm_audio_ref;
 
     let run_program = move |_event: ev::MouseEvent| {
         program.add_default_modules();
@@ -28,11 +27,5 @@ pub fn RunButton() -> impl IntoView {
             <i class="fas fa-play"></i>
             " Run"
         </button>
-        <audio
-            preload="auto"
-            node_ref=audio_ref
-        >
-          <source src="images/alarm.ogg" type="audio/ogg" />
-        </audio>
     }
 }

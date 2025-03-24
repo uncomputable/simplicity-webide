@@ -3,8 +3,8 @@ use std::sync::Arc;
 use itertools::Itertools;
 use leptos::{
     component, create_node_ref, create_rw_signal, ev, event_target_value, html, spawn_local,
-    use_context, view, IntoView, NodeRef, RwSignal, Signal, SignalGetUntracked, SignalSet,
-    SignalUpdate, SignalWith, SignalWithUntracked,
+    use_context, view, IntoView, RwSignal, Signal, SignalGetUntracked, SignalSet, SignalUpdate,
+    SignalWith, SignalWithUntracked,
 };
 use simfony::parse::ParseFromStr;
 use simfony::simplicity::jet::elements::ElementsEnv;
@@ -102,8 +102,6 @@ pub struct Runtime {
     pub run_succeeded: RwSignal<Option<bool>>,
     pub debug_output: RwSignal<String>,
     pub error_output: RwSignal<String>,
-    // This node ref needs to be mounted somewhere in order to work.
-    pub alarm_audio_ref: NodeRef<html::Audio>,
 }
 
 impl Runtime {
@@ -114,14 +112,10 @@ impl Runtime {
             run_succeeded: Default::default(),
             debug_output: Default::default(),
             error_output: Default::default(),
-            alarm_audio_ref: Default::default(),
         }
     }
 
     fn set_success(self, success: bool) {
-        if !success {
-            self.alarm_audio_ref.get().map(|audio| audio.play());
-        }
         spawn_local(async move {
             self.run_succeeded.set(Some(success));
             gloo_timers::future::TimeoutFuture::new(500).await;

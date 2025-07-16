@@ -1,0 +1,255 @@
+$background3: #2a2a2a;
+$primary: #EA9606;
+$secondary-text: #B5BDC2;
+$white: #ffffff;
+
+.navigation {
+    background-color: #000;
+    color: #fff;
+    position: relative;
+    margin: 0 auto;
+    border-bottom: 1px solid #333;
+
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        margin-top: 1rem;
+
+        @media (min-width: 768px) {
+            padding-right: 3.5rem;
+        }
+    }
+
+    &-logo-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    &-logo {
+        width: 270px;
+        height: 66px;
+    }
+
+    &-desktop {
+        display: none;
+        gap: 3rem;
+
+        @media (min-width: 768px) {
+            display: flex;
+        }
+    }
+
+    &-link {
+        font-family: 'rigid-square';
+        font-weight: 600;
+        font-size: 22px;
+        color: $white;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $secondary-text;
+        }
+    }
+
+    &-dropdown {
+        position: relative;
+
+        &:hover &-content {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        &-label {
+            font-family: 'rigid-square';
+            font-weight: 600;
+            font-size: 22px;
+            cursor: pointer;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -40px;
+                left: 0;
+                height: 4px;
+                width: 0;
+                background-color: $primary;
+                transition: width 0.3s ease;
+            }
+
+            &:hover::after {
+                width: 100%;
+            }
+        }
+
+        &-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            min-width: 300px;
+            padding-top: 38px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 50;
+
+            & > div {
+                background-color: $background3;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 1rem;
+            }
+        }
+
+        &-content-community {
+            min-width: 150px;
+        }
+
+        &-item {
+            display: block;
+            color: $white;
+            text-decoration: none;
+            padding: 0.5rem;
+            transition: color 0.2s ease;
+            background-color: #1d1f23;
+            &:hover {
+                color: $primary;
+            }
+        }
+
+        &-item-community {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        &-title {
+            font-family: 'rigid-square';
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        &-description {
+            color: $secondary-text;
+            font-size: 16px;
+        }
+
+        &-icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &-mobile-button {
+        display: block;
+        background: none;
+        border: none;
+        color: $white;
+        cursor: pointer;
+        padding: 0;
+
+        @media (min-width: 768px) {
+            display: none;
+        }
+    }
+
+    &-mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background-color: $background3;
+        color: $white;
+        padding: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+
+        &.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        @media (min-width: 768px) {
+            display: none;
+        }
+    }
+
+    &-mobile-section {
+        padding: 0 1rem;
+    }
+
+    &-mobile-dropdown-button {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem 0;
+        background: none;
+        border: none;
+        color: $white;
+        cursor: pointer;
+        font-size: 16px;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $secondary-text;
+        }
+    }
+
+    &-mobile-dropdown {
+        margin-left: 1rem;
+        margin-top: 0.5rem;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+
+        &.active {
+            max-height: 200px;
+            opacity: 1;
+        }
+    }
+
+    &-mobile-dropdown-item {
+        display: block;
+        padding: 0.25rem 0;
+        color: $primary;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $white;
+        }
+
+        &-community {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+
+    &-mobile-link {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: $white;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $secondary-text;
+        }
+    }
+}

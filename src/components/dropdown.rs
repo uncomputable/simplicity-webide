@@ -23,7 +23,7 @@ pub fn Dropdown(
         <div class="dropdown">
             <button class="button dropdown-button">
                 {name}" "
-                <i class="fa fa-caret-down"></i>
+                <i class="fa fa-chevron-down"></i>
             </button>
             <div class="dropdown-content">
                 {options_view}

@@ -35,7 +35,6 @@ pub fn ProgramWindow() -> impl IntoView {
                 <AddressButton />
                 <TransactionButton />
                 <ShareButton />
-                <div class="beta-tag">beta</div>
             </div>
 
             <HelpButton />

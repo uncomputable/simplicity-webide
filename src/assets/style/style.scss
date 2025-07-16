@@ -3,6 +3,7 @@
 @use 'components/program_window/program_input.scss';
 @use 'components/merkle.scss';
 @use 'components/merkle_graph.scss';
+@use 'components/navigation.scss';
 @use 'components/navbar.scss';
 @use 'components/string_box.scss';
 @use 'components/tab_content.scss';
@@ -11,6 +12,8 @@
 
 * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 html {
@@ -41,6 +44,11 @@ p {
     line-height: 1.5;
 }
 
+.main-content {
+    padding: 0 37px;
+    margin: 220px auto 75px;
+}
+
 .button-row {
     display: inline-flex;
     flex-wrap: wrap;
@@ -62,8 +70,8 @@ p {
     padding: 14px 16px;
     cursor: pointer;
     border: none;
-    background: #b26e0f;
-    border: 1px solid #b26e0f;
+    background: #EA9606;
+    border: 1px solid #EA9606;
     border-radius: 4px;
     margin-right: 4px;
 
@@ -81,7 +89,7 @@ p {
 }
 
 .submit-button, .push-button, .pop-button, .copy-button {
-    border: 1px solid #b26e0f;
+    border: 1px solid #EA9606;
     padding: 4px;
     border-radius: 4px;
     display: flex;
@@ -91,7 +99,7 @@ p {
     background: #191C21;
 
     &:hover {
-        background: #b26e0f;
+        background: #EA9606;
     }
 
     &.is-small{

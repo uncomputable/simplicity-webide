@@ -1,8 +1,10 @@
 .tab-content{
-    padding: 10px;
+    padding: 34px;
     background: #1d2127;
     margin-bottom: 20px;
     min-height: 470px;
+    position: relative;
+    border-radius: 0px 8px 8px 8px;
 }
 
 // witness tab
@@ -65,9 +67,9 @@
     }
 
     .signed-data-content{
-        border: 1px solid #b26e0f;
+        border: 1px solid #EA9606;
         border-radius: 8px;
-        padding-top: 20px;
+        padding: 20px 8px 8px 8px;
     }
 }
 

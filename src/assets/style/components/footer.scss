@@ -13,16 +13,11 @@ $font-carbon: 'Arial', sans-serif; // Replace with your Carbon font
 .footer {
     border-top: 1px solid $border-color;
     padding: 2rem 0 1.5rem 0;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-
-    @media (min-width: 768px) {
-        padding-left: 0;
-        padding-right: 0;
-    }
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 
     &-container {
-        max-width: 1280px;
+        // max-width: 1280px;
         margin: 0 auto;
         display: flex;
         flex-direction: column;

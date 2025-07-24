@@ -5,6 +5,9 @@
     min-height: 470px;
     position: relative;
     border-radius: 0px 8px 8px 8px;
+    @media screen and (max-width: 1000px) {
+        border-radius: 0px 0px 8px 8px;
+    }
 }
 
 // witness tab

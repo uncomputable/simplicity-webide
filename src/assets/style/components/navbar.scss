@@ -9,11 +9,26 @@
         cursor: pointer;
         border: 1px solid #2E3135;
         background: #191C21;
-        font-family: 'rigid-square';
-        font-size: 20px;
+        // font-family: 'rigid-square';
+        font-size: 24px;
         font-style: normal;
         font-weight: 700;
         line-height: 24px;
+        @media screen and (max-width: 1000px) {
+            font-size: 14px;
+            max-width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 14px 0;
+        }
+        &:first-child {
+            border-radius: 8px 0px 0px 0px;
+        }
+         &:last-child {
+            border-radius: 0px 8px 0px 0px;
+        }
         &.active{
             background: #1d2127;
             border: 1px solid #1d2127;
@@ -27,14 +42,17 @@
         // border-radius: 8px 0px 0px 0px;
         border: 1px solid #2E3135;
         background: #191C21;
-        font-family: 'rigid-square';
+        // font-family: 'rigid-square';
         height: 60px;
-        font-size: 20px;
+        font-size: 24px;
         font-style: normal;
         font-weight: 700;
         line-height: 24px;
         width: 100%;
-        max-width: 197px;
+        // max-width: 197px;
+        @media screen and (max-width: 1000px) {
+            font-size: 14px;
+        }
         &:hover {
             color: #EA9606;
         }
@@ -61,6 +79,9 @@
         color: #000;
         max-width: 156px;
         width: 100%;
+        @media screen and (max-width: 475px) {
+            max-width: 100px;
+        }
         &:hover {
             background: #fff;
             color: #000;
@@ -77,13 +98,16 @@
     }
 
     .dropdown {
+         position: relative;
+        @media screen and (max-width: 1000px) {
+            flex-grow: 1;
+        }
         .dropdown-button {
-                border-radius: 8px 0 0 0;
+                border-radius: 8px 0 0 0;;
         }
         .dropdown-content {
             display: none; // Hide dropdown by default
             position: absolute;
-            max-width: 197px;
             width: 100%;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
@@ -96,70 +120,71 @@
                 text-decoration: none;
                 display: block;
                 text-align: left;
-                background: #2e333b;
-                border: 1px solid #2E3135;
+                border: 0.5px solid #2E3135;
+                background: #191C21;
                 cursor: pointer;
-
+                outline: none;
+                font-size: 16px;
                 &:hover{
-                    background: #3c424c;
+                    color: #EA9606;
                 }
 
                 &:active{
-                    background: #2E3135;
+                    color: #EA9606;
                 }
             }
         }
-
-        &:hover {
-            .dropdown-content {
-                display: block; // Show dropdown on hover
-            }
-
-            .dropdown-button{
-                background: #2e333b;
-            }
+        .dropdown-chevron svg {
+            transition: transform 0.2s ease;
         }
-    }
-
-    .hamburger{
-        display: none;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-
-        &:before{
-            font-size: 34px;
-        }
-
-        @media screen and (max-width: 1000px) {
-            display: inline-block;
-        }
-    }
-
-    .hamburger-close{
-        display: none;
-        position: absolute;
-        top: 10px;
-        right: 14px;
         
-        &:before{
-            font-size: 34px;
+        &:hover {
+            .dropdown-chevron svg {
+                transform: rotate(180deg);
+                path {
+                    fill: #EA9606;
+                }
+            }
+            
+            .dropdown-content {
+                display: block;
+            }
         }
 
+    }
+
+    .hamburger-container {
+        display: none;
         @media screen and (max-width: 1000px) {
-            display: inline-block;
+            border-radius: 0px 8px 0px 0px;
+            border: 1px solid #2E3135;
+            background: #191C21;
+            width: 100%;
+            position: relative;
+            max-width: 50px;
+            margin-left: auto; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover {
+                cursor: pointer;
+            }
         }
+    }
+
+    .hamburger-active {
+        background: #2E3135;
     }
 
     .mobile-hidden{
-
+        display: flex;
         @media screen and (max-width: 1000px) {
 
             display: none;
             flex-direction: column;
             position: absolute;
-            top: 55px;
-            right: 10px;
+            top: 60px;
+            right: 0;
             z-index: 2;
             background: #0d0e10;
 

@@ -15,7 +15,6 @@ $white: #ffffff;
         justify-content: space-between;
         align-items: center;
         padding: 1rem 1.5rem;
-        margin-top: 1rem;
 
         @media (min-width: 768px) {
             padding-right: 3.5rem;
@@ -58,9 +57,14 @@ $white: #ffffff;
     &-dropdown {
         position: relative;
 
+        // Keep hover state when moving from label to content
         &:hover &-content {
             opacity: 1;
             visibility: visible;
+        }
+
+        &:hover &-label::after {
+            width: 100%;
         }
 
         &-label {
@@ -80,10 +84,6 @@ $white: #ffffff;
                 background-color: $primary;
                 transition: width 0.3s ease;
             }
-
-            &:hover::after {
-                width: 100%;
-            }
         }
 
         &-content {
@@ -97,6 +97,16 @@ $white: #ffffff;
             visibility: hidden;
             transition: all 0.2s ease;
             z-index: 50;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 38px;
+                background: transparent;
+            }
 
             & > div {
                 background-color: $background3;
@@ -113,7 +123,7 @@ $white: #ffffff;
             display: block;
             color: $white;
             text-decoration: none;
-            padding: 0.5rem;
+            padding: 1rem;
             transition: color 0.2s ease;
             background-color: #1d1f23;
             &:hover {
@@ -130,12 +140,12 @@ $white: #ffffff;
         &-title {
             font-family: 'rigid-square';
             font-weight: 600;
-            font-size: 18px;
+            font-size: 22px;
         }
 
         &-description {
             color: $secondary-text;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         &-icon {
@@ -163,7 +173,7 @@ $white: #ffffff;
         left: 0;
         right: 0;
         z-index: 10;
-        background-color: $background3;
+        background-color: #1d1f23;
         color: $white;
         padding: 1rem 0;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -187,7 +197,9 @@ $white: #ffffff;
     }
 
     &-mobile-dropdown-button {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 8px;
         width: 100%;
         text-align: left;
         padding: 0.5rem 0;
@@ -204,8 +216,6 @@ $white: #ffffff;
     }
 
     &-mobile-dropdown {
-        margin-left: 1rem;
-        margin-top: 0.5rem;
         max-height: 0;
         overflow: hidden;
         opacity: 0;

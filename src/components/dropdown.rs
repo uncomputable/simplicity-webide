@@ -23,7 +23,11 @@ pub fn Dropdown(
         <div class="dropdown">
             <button class="button dropdown-button">
                 {name}" "
-                <i class="fa fa-chevron-down"></i>
+                <i class="dropdown-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
+                    <path d="M7.72437 8.04315C6.95677 8.75674 5.76848 8.75674 5.00088 8.04315L1.07448 4.393C-0.256421 3.15574 0.619052 0.928198 2.43622 0.928199L10.289 0.928199C12.1062 0.928199 12.9817 3.15574 11.6508 4.393L7.72437 8.04315Z" fill="white"/>
+                    </svg>
+                </i>
             </button>
             <div class="dropdown-content">
                 {options_view}

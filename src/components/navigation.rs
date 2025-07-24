@@ -65,7 +65,7 @@ pub fn Navigation() -> impl IntoView {
                     <div class="navigation-dropdown">
                         <span class="navigation-dropdown-label">"Packages"</span>
                         <div class="navigation-dropdown-content">
-                            <a href="https://simplicity-lang.org/packages/simplicityhl" class="navigation-dropdown-item">
+                            <a href=" https://ide.simplicity-lang.org/" class="navigation-dropdown-item">
                                 <div class="navigation-dropdown-title">"SimplicityHL IDE"</div>
                                 <div class="navigation-dropdown-description">"Small description here about this item"</div>
                             </a>
@@ -111,7 +111,7 @@ pub fn Navigation() -> impl IntoView {
                 class:active=move || mobile_menu_open.get()
             >
                 <div class="navigation-mobile-section">
-                    <button class="navigation-mobile-dropdown-button" on:click=toggle_docs>"Docs"</button>
+                    <button class="navigation-mobile-dropdown-button" on:click=toggle_docs>"Docs" <i class="fa fa-chevron-down"></i></button>
                     <div 
                         class="navigation-mobile-dropdown" 
                         class:active=move || docs_open.get()
@@ -123,12 +123,12 @@ pub fn Navigation() -> impl IntoView {
                 </div>
 
                 <div class="navigation-mobile-section">
-                    <button class="navigation-mobile-dropdown-button" on:click=toggle_packages>"Packages"</button>
+                    <button class="navigation-mobile-dropdown-button" on:click=toggle_packages>"Packages" <i class="fa fa-chevron-down"></i></button>
                     <div 
                         class="navigation-mobile-dropdown" 
                         class:active=move || packages_open.get()
                     >
-                        <a href="https://simplicity-lang.org/packages/simplicityhl" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL IDE"</a>
+                        <a href=" https://ide.simplicity-lang.org/" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL IDE"</a>
                         <a href="https://github.com/BlockstreamResearch/simplicity" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Simplicity"</a>
                         <a href="https://github.com/BlockstreamResearch/SimplicityHL" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL Compiler"</a>
                     </div>
@@ -137,7 +137,7 @@ pub fn Navigation() -> impl IntoView {
                 <a href="https://simplicity-lang.org/content" class="navigation-mobile-link" on:click=close_mobile_menu>"Content"</a>
 
                 <div class="navigation-mobile-section">
-                    <button class="navigation-mobile-dropdown-button" on:click=toggle_community>"Community"</button>
+                    <button class="navigation-mobile-dropdown-button" on:click=toggle_community>"Community" <i class="fa fa-chevron-down"></i></button>
                     <div 
                         class="navigation-mobile-dropdown" 
                         class:active=move || community_open.get()

@@ -35,15 +35,20 @@ pub fn ProgramWindow() -> impl IntoView {
                 <AddressButton />
                 <TransactionButton />
                 <ShareButton />
+                <HelpButton />
             </div>
 
-            <HelpButton />
-
-            {move || if !mobile_open.get() {
-                view! { <i class="fa-solid fa-bars hamburger" on:click=move |_| set_mobile_open.set(true)></i>}
-            } else {
-                view! { <i class="fa-solid fa-xmark hamburger-close" on:click=move |_| set_mobile_open.set(false)></i> }
-            }}
+            <div 
+                class="hamburger-container" 
+                class:hamburger-active=mobile_open
+                on:click=move |_| set_mobile_open.set(!mobile_open.get())
+            >
+                {move || if !mobile_open.get() {
+                    view! { <i class="fa-solid fa-bars"></i>}
+                } else {
+                    view! { <i class="fa-solid fa-xmark"></i> }
+                }}
+            </div>
         </Toolbar>
         <ProgramTab />
     }

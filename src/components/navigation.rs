@@ -47,40 +47,45 @@ pub fn Navigation() -> impl IntoView {
                     <div class="navigation-dropdown">
                         <span class="navigation-dropdown-label">"Docs"</span>
                         <div class="navigation-dropdown-content">
+                            <a href="https://blockstream.com/simplicity.pdf" target="_blank" rel="noopener noreferrer" class="navigation-dropdown-item">
+                                <div class="navigation-dropdown-title">"Whitepaper"</div>
+                                <div class="navigation-dropdown-description">"The original Simplicity whitepaper, detailing the language."</div>
+                            </a>
+                            <a href="https://docs.rs/simfony-as-rust" target="_blank" rel="noopener noreferrer" class="navigation-dropdown-item">
+                                <div class="navigation-dropdown-title">"Jets Documentation"</div>
+                                <div class="navigation-dropdown-description">"Technical reference detailing each jet’s functionality and use."</div>
+                            </a>
                             <a href="https://docs.simplicity-lang.org/" target="_blank" rel="noopener noreferrer" class="navigation-dropdown-item">
                                 <div class="navigation-dropdown-title">"SimplicityHL"</div>
-                                <div class="navigation-dropdown-description">"Small description here about this item"</div>
+                                <div class="navigation-dropdown-description">"A high-level, developer-friendly language that compiles down to Simplicity."</div>
                             </a>
                             <a href="https://github.com/BlockstreamResearch/SimplicityHL/tree/master/examples" target="_blank" rel="noopener noreferrer" class="navigation-dropdown-item">
                                 <div class="navigation-dropdown-title">"Contract Examples"</div>
-                                <div class="navigation-dropdown-description">"Small description here about this item"</div>
+                                <div class="navigation-dropdown-description">"A curated set of smart contract templates and patterns."</div>
                             </a>
-                            <a href="https://docs.rs/simfony-as-rust" target="_blank" rel="noopener noreferrer" class="navigation-dropdown-item">
-                                <div class="navigation-dropdown-title">"Jet Documentation"</div>
-                                <div class="navigation-dropdown-description">"Small description here about this item"</div>
-                            </a>
+                            
                         </div>
                     </div>
 
                     <div class="navigation-dropdown">
                         <span class="navigation-dropdown-label">"Packages"</span>
                         <div class="navigation-dropdown-content">
-                            <a href=" https://ide.simplicity-lang.org/" class="navigation-dropdown-item">
-                                <div class="navigation-dropdown-title">"SimplicityHL IDE"</div>
-                                <div class="navigation-dropdown-description">"Small description here about this item"</div>
-                            </a>
                             <a href="https://github.com/BlockstreamResearch/simplicity" target="_blank" rel="noopener noreferrer" class="navigation-dropdown-item">
                                 <div class="navigation-dropdown-title">"Simplicity"</div>
-                                <div class="navigation-dropdown-description">"Small description here about this item"</div>
+                                <div class="navigation-dropdown-description">"The low-level, formally-verifiable smart contract language."</div>
                             </a>
                             <a href="https://github.com/BlockstreamResearch/SimplicityHL" target="_blank" rel="noopener noreferrer" class="navigation-dropdown-item">
                                 <div class="navigation-dropdown-title">"SimplicityHL Compiler"</div>
-                                <div class="navigation-dropdown-description">"Small description here about this item"</div>
+                                <div class="navigation-dropdown-description">"The toolchain that translates SimplicityHL code into raw Simplicity."</div>
+                            </a>
+                            <a href=" https://ide.simplicity-lang.org/" class="navigation-dropdown-item">
+                                <div class="navigation-dropdown-title">"SimplicityHL IDE"</div>
+                                <div class="navigation-dropdown-description">"A browser-based playground for writing and testing contracts."</div>
                             </a>
                         </div>
                     </div>
 
-                    <a href="https://simplicity-lang.org/content" class="navigation-link">"Learn"</a>
+                    <a href="https://simplicity-lang.org/learn" class="navigation-link">"Learn"</a>
 
                     <div class="navigation-dropdown navigation-dropdown-community">
                         <span class="navigation-dropdown-label">"Community"</span>
@@ -116,9 +121,10 @@ pub fn Navigation() -> impl IntoView {
                         class="navigation-mobile-dropdown" 
                         class:active=move || docs_open.get()
                     >
+                        <a href="https://blockstream.com/simplicity.pdf" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Whitepaper"</a>
+                        <a href="https://docs.rs/simfony-as-rust" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Jets Documentation"</a>
                         <a href="https://docs.simplicity-lang.org/" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL"</a>
                         <a href="https://github.com/BlockstreamResearch/SimplicityHL/tree/master/examples" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Contract Examples"</a>
-                        <a href="https://docs.rs/simfony-as-rust" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Jet Documentation"</a>
                     </div>
                 </div>
 
@@ -128,13 +134,13 @@ pub fn Navigation() -> impl IntoView {
                         class="navigation-mobile-dropdown" 
                         class:active=move || packages_open.get()
                     >
-                        <a href=" https://ide.simplicity-lang.org/" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL IDE"</a>
                         <a href="https://github.com/BlockstreamResearch/simplicity" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Simplicity"</a>
                         <a href="https://github.com/BlockstreamResearch/SimplicityHL" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL Compiler"</a>
+                        <a href=" https://ide.simplicity-lang.org/" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL IDE"</a>
                     </div>
                 </div>
 
-                <a href="https://simplicity-lang.org/content" class="navigation-mobile-link" on:click=close_mobile_menu>"Content"</a>
+                <a href="https://simplicity-lang.org/learn" class="navigation-mobile-link" on:click=close_mobile_menu>"Learn"</a>
 
                 <div class="navigation-mobile-section">
                     <button class="navigation-mobile-dropdown-button" on:click=toggle_community>"Community" <i class="fa fa-chevron-down"></i></button>
@@ -143,11 +149,11 @@ pub fn Navigation() -> impl IntoView {
                         class:active=move || community_open.get()
                     >
                         <a href="https://x.com/blksresearch" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item navigation-mobile-dropdown-item-community" on:click=close_mobile_menu>
-                            <img src="images/icons/x.svg" alt="Twitter" class="navigation-dropdown-icon" />
+                            <img src="images/x.svg" alt="Twitter" class="navigation-dropdown-icon" />
                             <span>"Twitter"</span>
                         </a>
                         <a href="https://t.me/simplicity_community" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item navigation-mobile-dropdown-item-community" on:click=close_mobile_menu>
-                            <img src="images/icons/telegram.svg" alt="Telegram" class="navigation-dropdown-icon" />
+                            <img src="images/telegram.svg" alt="Telegram" class="navigation-dropdown-icon" />
                             <span>"Telegram"</span>
                         </a>
                     </div>

@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 a {
-    color: #ea9606;
+    color: #FF9517;
 
     &:hover {
         color: white;
@@ -74,8 +74,8 @@ p {
     padding: 14px 16px;
     cursor: pointer;
     border: none;
-    background: #EA9606;
-    border: 1px solid #EA9606;
+    background: #FF9517;
+    border: 1px solid #FF9517;
     border-radius: 4px;
     margin-right: 4px;
 
@@ -93,7 +93,7 @@ p {
 }
 
 .submit-button, .push-button, .pop-button, .copy-button {
-    border: 1px solid #EA9606;
+    border: 1px solid #FF9517;
     padding: 4px;
     border-radius: 4px;
     display: flex;
@@ -103,7 +103,7 @@ p {
     background: #191C21;
     gap: 4px;
     &:hover {
-        background: #EA9606;
+        background: #FF9517;
     }
 
     &.is-small{
@@ -116,7 +116,7 @@ input:invalid {
 }
 
 input[type="radio"]{
-    accent-color: #ea9606;
+    accent-color: #FF9517;
 }
 
 .input{

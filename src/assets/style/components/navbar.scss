@@ -54,7 +54,7 @@
             font-size: 14px;
         }
         &:hover {
-            color: #EA9606;
+            color: #FF9517;
         }
         &:active{
             background: #2E3135;
@@ -73,7 +73,7 @@
 
     .run-button{
         border-radius: 8px 8px 0px 0px;
-        background: #EA9606;
+        background: #FF9517;
         margin: 0;
         margin-right: 28px;
         color: #000;
@@ -126,11 +126,11 @@
                 outline: none;
                 font-size: 16px;
                 &:hover{
-                    color: #EA9606;
+                    color: #FF9517;
                 }
 
                 &:active{
-                    color: #EA9606;
+                    color: #FF9517;
                 }
             }
         }
@@ -142,7 +142,7 @@
             .dropdown-chevron svg {
                 transform: rotate(180deg);
                 path {
-                    fill: #EA9606;
+                    fill: #FF9517;
                 }
             }
             

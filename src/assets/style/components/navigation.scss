@@ -56,8 +56,12 @@ $white: #ffffff;
 
     &-dropdown {
         position: relative;
-
-        // Keep hover state when moving from label to content
+        &:nth-child(3){
+            .navigation-dropdown-content{
+                min-width: 150px;
+            }
+        }
+       
         &:hover &-content {
             opacity: 1;
             visibility: visible;

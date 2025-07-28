@@ -5,6 +5,7 @@ pub fn Navigation() -> impl IntoView {
     let (mobile_menu_open, set_mobile_menu_open) = create_signal(false);
     let (docs_open, set_docs_open) = create_signal(false);
     let (packages_open, set_packages_open) = create_signal(false);
+    let (learn_open, set_learn_open) = create_signal(false);
     let (community_open, set_community_open) = create_signal(false);
 
     let toggle_mobile_menu = move |_| {
@@ -12,6 +13,7 @@ pub fn Navigation() -> impl IntoView {
         if !mobile_menu_open.get() {
             set_docs_open.set(false);
             set_packages_open.set(false);
+            set_learn_open.set(false);
             set_community_open.set(false);
         }
     };
@@ -24,6 +26,10 @@ pub fn Navigation() -> impl IntoView {
         set_packages_open.set(!packages_open.get());
     };
 
+    let toggle_learn = move |_| {
+        set_learn_open.set(!learn_open.get());
+    };
+
     let toggle_community = move |_| {
         set_community_open.set(!community_open.get());
     };
@@ -32,6 +38,7 @@ pub fn Navigation() -> impl IntoView {
         set_mobile_menu_open.set(false);
         set_docs_open.set(false);
         set_packages_open.set(false);
+        set_learn_open.set(false);
         set_community_open.set(false);
     };
 
@@ -53,7 +60,7 @@ pub fn Navigation() -> impl IntoView {
                             </a>
                             <a href="https://docs.rs/simfony-as-rust" target="_blank" rel="noopener noreferrer" class="navigation-dropdown-item">
                                 <div class="navigation-dropdown-title">"Jets Documentation"</div>
-                                <div class="navigation-dropdown-description">"Technical reference detailing each jet’s functionality and use."</div>
+                                <div class="navigation-dropdown-description">"Technical reference detailing each jet's functionality and use."</div>
                             </a>
                             <a href="https://docs.simplicity-lang.org/" target="_blank" rel="noopener noreferrer" class="navigation-dropdown-item">
                                 <div class="navigation-dropdown-title">"SimplicityHL"</div>
@@ -63,7 +70,6 @@ pub fn Navigation() -> impl IntoView {
                                 <div class="navigation-dropdown-title">"Contract Examples"</div>
                                 <div class="navigation-dropdown-description">"A curated set of smart contract templates and patterns."</div>
                             </a>
-                            
                         </div>
                     </div>
 
@@ -78,14 +84,26 @@ pub fn Navigation() -> impl IntoView {
                                 <div class="navigation-dropdown-title">"SimplicityHL Compiler"</div>
                                 <div class="navigation-dropdown-description">"The toolchain that translates SimplicityHL code into raw Simplicity."</div>
                             </a>
-                            <a href=" https://ide.simplicity-lang.org/" class="navigation-dropdown-item">
+                            <a href="https://ide.simplicity-lang.org/" class="navigation-dropdown-item">
                                 <div class="navigation-dropdown-title">"SimplicityHL IDE"</div>
                                 <div class="navigation-dropdown-description">"A browser-based playground for writing and testing contracts."</div>
                             </a>
                         </div>
                     </div>
 
-                    <a href="https://simplicity-lang.org/learn" class="navigation-link">"Learn"</a>
+                    <div class="navigation-dropdown">
+                        <span class="navigation-dropdown-label">"Learn"</span>
+                        <div class="navigation-dropdown-content">
+                            <a href="https://simplicity-lang.org/articles" class="navigation-dropdown-item">
+                                <div class="navigation-dropdown-title">"Articles"</div>
+                                // <div class="navigation-dropdown-description">"Read in-depth articles about Simplicity and smart contracts."</div>
+                            </a>
+                            <a href="https://simplicity-lang.org/videos" class="navigation-dropdown-item">
+                                <div class="navigation-dropdown-title">"Videos"</div>
+                                // <div class="navigation-dropdown-description">"Watch tutorials and presentations about Simplicity."</div>
+                            </a>
+                        </div>
+                    </div>
 
                     <div class="navigation-dropdown navigation-dropdown-community">
                         <span class="navigation-dropdown-label">"Community"</span>
@@ -136,11 +154,20 @@ pub fn Navigation() -> impl IntoView {
                     >
                         <a href="https://github.com/BlockstreamResearch/simplicity" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Simplicity"</a>
                         <a href="https://github.com/BlockstreamResearch/SimplicityHL" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL Compiler"</a>
-                        <a href=" https://ide.simplicity-lang.org/" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL IDE"</a>
+                        <a href="https://ide.simplicity-lang.org/" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"SimplicityHL IDE"</a>
                     </div>
                 </div>
 
-                <a href="https://simplicity-lang.org/learn" class="navigation-mobile-link" on:click=close_mobile_menu>"Learn"</a>
+                <div class="navigation-mobile-section">
+                    <button class="navigation-mobile-dropdown-button" on:click=toggle_learn>"Learn" <i class="fa fa-chevron-down"></i></button>
+                    <div 
+                        class="navigation-mobile-dropdown" 
+                        class:active=move || learn_open.get()
+                    >
+                        <a href="https://simplicity-lang.org/articles" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Articles"</a>
+                        <a href="https://simplicity-lang.org/videos" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Videos"</a>
+                    </div>
+                </div>
 
                 <div class="navigation-mobile-section">
                     <button class="navigation-mobile-dropdown-button" on:click=toggle_community>"Community" <i class="fa fa-chevron-down"></i></button>

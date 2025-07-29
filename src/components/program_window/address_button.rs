@@ -19,7 +19,6 @@ pub fn AddressButton() -> impl IntoView {
     };
     view! {
         <CopyToClipboard content=address class="button" tooltip_below=true>
-            <i class="fa-solid fa-inbox"></i>
             " Address"
         </CopyToClipboard>
     }

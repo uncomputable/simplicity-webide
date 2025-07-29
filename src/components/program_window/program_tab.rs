@@ -219,6 +219,7 @@ pub fn ProgramTab() -> impl IntoView {
                 on:input=update_program_text
                 on:keydown=handle_keydown
                 node_ref=textarea_ref
+                name="program-input"
             >
                 {program.text.get_untracked()}
             </textarea>

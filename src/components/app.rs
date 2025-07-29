@@ -1,6 +1,7 @@
 use leptos::{component, provide_context, view, IntoView, RwSignal};
 
 use super::program_window::{select_example, Program, ProgramWindow, Runtime};
+use crate::components::navigation::Navigation;
 use crate::components::footer::Footer;
 use crate::components::run_window::{HashCount, KeyCount, RunWindow, SignedData, TxEnv};
 use crate::components::state::LocalStorage;
@@ -31,8 +32,11 @@ pub fn App() -> impl IntoView {
     }
 
     view! {
-        <ProgramWindow />
-        <RunWindow />
+        <Navigation />
+        <section class="main-content">
+            <ProgramWindow />
+            <RunWindow />
+        </section>
         <Footer />
     }
 }

@@ -32,7 +32,6 @@ pub fn TransactionButton() -> impl IntoView {
     };
     view! {
         <CopyToClipboard content=transaction class="button" tooltip_below=true>
-            <i class="fa-solid fa-right-left"></i>
             " Transaction"
         </CopyToClipboard>
     }

@@ -2,6 +2,7 @@ mod analysis;
 mod app;
 mod copy_to_clipboard;
 mod dropdown;
+mod navigation;
 mod footer;
 mod navbar;
 mod program_window;

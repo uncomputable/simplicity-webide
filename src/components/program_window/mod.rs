@@ -38,8 +38,8 @@ pub fn ProgramWindow() -> impl IntoView {
                 <HelpButton />
             </div>
 
-            <div 
-                class="hamburger-container" 
+            <div
+                class="hamburger-container"
                 class:hamburger-active=mobile_open
                 on:click=move |_| set_mobile_open.set(!mobile_open.get())
             >

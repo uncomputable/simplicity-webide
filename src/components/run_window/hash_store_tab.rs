@@ -33,7 +33,7 @@ fn CopyHashesToClipboard() -> impl IntoView {
     let hashed_data = use_context::<HashedData>().expect("hashed data should exist in context");
     let hash_count = use_context::<HashCount>().expect("hash count should exist in context");
     let copy_single_hash = move |index: usize| -> View {
-        let label = format!("Hash {}", index);
+        let label = format!("Hash {index}");
         let hash_hex = move || format!("0x{}", hashed_data.hashes[index].to_byte_array().as_hex());
 
         view! {
@@ -91,7 +91,7 @@ fn CopyPreimagesToClipboard() -> impl IntoView {
     let hashed_data = use_context::<HashedData>().expect("hashed data should exist in context");
     let hash_count = use_context::<HashCount>().expect("hash count should exist in context");
     let copy_single_preimage = move |index: usize| -> View {
-        let label = format!("Pre {}", index);
+        let label = format!("Pre {index}");
         let preimage_hex = move || format!("0x{}", hashed_data.preimages[index].as_hex());
 
         view! {

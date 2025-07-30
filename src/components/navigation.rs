@@ -129,14 +129,14 @@ pub fn Navigation() -> impl IntoView {
             </div>
 
             // Mobile Menu
-            <div 
+            <div
                 class="navigation-mobile-menu"
                 class:active=move || mobile_menu_open.get()
             >
                 <div class="navigation-mobile-section">
                     <button class="navigation-mobile-dropdown-button" on:click=toggle_docs>"Docs" <i class="fa fa-chevron-down"></i></button>
-                    <div 
-                        class="navigation-mobile-dropdown" 
+                    <div
+                        class="navigation-mobile-dropdown"
                         class:active=move || docs_open.get()
                     >
                         <a href="https://blockstream.com/simplicity.pdf" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Whitepaper"</a>
@@ -148,8 +148,8 @@ pub fn Navigation() -> impl IntoView {
 
                 <div class="navigation-mobile-section">
                     <button class="navigation-mobile-dropdown-button" on:click=toggle_packages>"Packages" <i class="fa fa-chevron-down"></i></button>
-                    <div 
-                        class="navigation-mobile-dropdown" 
+                    <div
+                        class="navigation-mobile-dropdown"
                         class:active=move || packages_open.get()
                     >
                         <a href="https://github.com/BlockstreamResearch/simplicity" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Simplicity"</a>
@@ -160,8 +160,8 @@ pub fn Navigation() -> impl IntoView {
 
                 <div class="navigation-mobile-section">
                     <button class="navigation-mobile-dropdown-button" on:click=toggle_learn>"Learn" <i class="fa fa-chevron-down"></i></button>
-                    <div 
-                        class="navigation-mobile-dropdown" 
+                    <div
+                        class="navigation-mobile-dropdown"
                         class:active=move || learn_open.get()
                     >
                         <a href="https://simplicity-lang.org/articles" class="navigation-mobile-dropdown-item" on:click=close_mobile_menu>"Articles"</a>
@@ -171,8 +171,8 @@ pub fn Navigation() -> impl IntoView {
 
                 <div class="navigation-mobile-section">
                     <button class="navigation-mobile-dropdown-button" on:click=toggle_community>"Community" <i class="fa fa-chevron-down"></i></button>
-                    <div 
-                        class="navigation-mobile-dropdown" 
+                    <div
+                        class="navigation-mobile-dropdown"
                         class:active=move || community_open.get()
                     >
                         <a href="https://x.com/blksresearch" target="_blank" rel="noopener noreferrer" class="navigation-mobile-dropdown-item navigation-mobile-dropdown-item-community" on:click=close_mobile_menu>

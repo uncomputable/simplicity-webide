@@ -140,8 +140,8 @@ impl<M: node::Marker> fmt::Display for DisplayInner<'_, M> {
             Inner::Disconnect(_, _) => f.write_str("disconnect"),
             Inner::Witness(_) => f.write_str("witness"),
             Inner::Fail(_) => f.write_str("fail"),
-            Inner::Jet(jet) => write!(f, "jet_{}", jet),
-            Inner::Word(value) => write!(f, "const {}", value),
+            Inner::Jet(jet) => write!(f, "jet_{jet}"),
+            Inner::Word(value) => write!(f, "const {value}"),
         }
     }
 }

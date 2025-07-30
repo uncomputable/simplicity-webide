@@ -27,7 +27,7 @@ pub fn select_example(example: Example) {
         &hashed_data.preimages,
         signed_data.sighash_all.get_untracked(),
     );
-    let satisfied_text = format!("{witness}\n\n{}", program_text);
+    let satisfied_text = format!("{witness}\n\n{program_text}");
     program.text.set(satisfied_text);
     active_run_tab.0.update(|_| {}); // refresh active tab
 }

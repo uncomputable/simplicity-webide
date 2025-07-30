@@ -21,7 +21,7 @@ pub fn Footer() -> impl IntoView {
                     </p>
                     <NewsletterForm />
                 </div>
-                
+
                 <div class="footer-bottom">
                     <div class="footer-links">
                         <a href="https://blockstream.com/terms/" class="footer-link">
@@ -57,7 +57,7 @@ fn NewsletterForm() -> impl IntoView {
 
     let handle_submit = move |ev: leptos::ev::SubmitEvent| {
         ev.prevent_default();
-        
+
         let email_value = email.get();
         if email_value.is_empty() || !email_value.contains('@') {
             set_status.set(FormStatus::Error);
@@ -66,12 +66,13 @@ fn NewsletterForm() -> impl IntoView {
         }
 
         set_status.set(FormStatus::Loading);
-        
+
         spawn_local(async move {
             match subscribe_to_newsletter(email_value).await {
                 Ok(_) => {
                     set_status.set(FormStatus::Success);
-                    set_message.set("Thank you for subscribing! We'll keep you updated.".to_string());
+                    set_message
+                        .set("Thank you for subscribing! We'll keep you updated.".to_string());
                     set_email.set(String::new());
                 }
                 Err(err) => {
@@ -96,8 +97,8 @@ fn NewsletterForm() -> impl IntoView {
                     required
                 />
             </div>
-            <button 
-                type="submit" 
+            <button
+                type="submit"
                 class="newsletter-button"
                 disabled=move || matches!(status.get(), FormStatus::Loading)
             >
@@ -131,16 +132,16 @@ enum FormStatus {
 async fn subscribe_to_newsletter(email: String) -> Result<(), String> {
     use gloo_net::http::Request;
     use serde_json::json;
-    
+
     let api_url = "https://simplicity-lang.org/api/subscribe";
-    
+
     let response = Request::post(api_url)
         .header("Content-Type", "application/json")
         .json(&json!({ "email": email }))
-        .map_err(|e| format!("Failed to create request: {}", e))?
+        .map_err(|e| format!("Failed to create request: {e}"))?
         .send()
         .await
-        .map_err(|e| format!("Network error: {}", e))?;
+        .map_err(|e| format!("Network error: {e}"))?;
 
     if response.ok() {
         Ok(())
@@ -153,7 +154,7 @@ async fn subscribe_to_newsletter(email: String) -> Result<(), String> {
                     .unwrap_or("Subscription failed");
                 Err(error_msg.to_string())
             }
-            Err(_) => Err("Subscription failed. Please try again.".to_string())
+            Err(_) => Err("Subscription failed. Please try again.".to_string()),
         }
     }
 }
@@ -166,7 +167,7 @@ fn event_target_value(ev: &leptos::ev::Event) -> String {
 }
 
 #[cfg(not(target_arch = "wasm32"))]
-fn spawn_local<F>(_future: F) 
+fn spawn_local<F>(_future: F)
 where
     F: std::future::Future<Output = ()> + 'static,
 {

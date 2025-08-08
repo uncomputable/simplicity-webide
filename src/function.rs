@@ -2,14 +2,14 @@ use std::fmt;
 use std::sync::Arc;
 
 use either::Either;
-use simfony::debug::{DebugSymbols, FallibleCall, FallibleCallName};
-use simfony::either;
-use simfony::simplicity::jet::elements::ElementsEnv;
-use simfony::SatisfiedProgram;
-use simfony::{elements, simplicity};
 use simplicity::node::Inner;
 use simplicity::types::Final;
 use simplicity::Value;
+use simplicityhl::debug::{DebugSymbols, FallibleCall, FallibleCallName};
+use simplicityhl::either;
+use simplicityhl::simplicity::jet::elements::ElementsEnv;
+use simplicityhl::SatisfiedProgram;
+use simplicityhl::{elements, simplicity};
 
 use crate::jet;
 use crate::jet::JetFailed;
@@ -21,7 +21,7 @@ pub enum ErrorKind {
     FailNode,
     JetFailed,
     WrongType,
-    SimfonyCallFailed(FallibleCall),
+    SimplicityHLCallFailed(FallibleCall),
 }
 
 impl fmt::Display for ErrorKind {
@@ -33,7 +33,7 @@ impl fmt::Display for ErrorKind {
             ErrorKind::WrongType => {
                 f.write_str("The program is ill-typed (this should never happen)")
             }
-            ErrorKind::SimfonyCallFailed(call) => {
+            ErrorKind::SimplicityHLCallFailed(call) => {
                 match call.name() {
                     FallibleCallName::Assert => writeln!(f, "Assertion failed: false")?,
                     FallibleCallName::Panic => writeln!(f, "Explicit panic")?,
@@ -60,7 +60,7 @@ enum Task {
     MakeLeft(Arc<Final>),
     MakeRight(Arc<Final>),
     MakeProduct,
-    ResetActiveSimfonyCall,
+    ResetActiveSimplicityHLCall,
 }
 
 #[derive(Debug, Clone, Eq, PartialEq)]
@@ -71,11 +71,11 @@ pub struct Runner {
     input: Vec<Value>,
     /// Stack of output values.
     output: Vec<Value>,
-    /// Simfony debug symbols in the Simplicity target code.
+    /// simplicityhl debug symbols in the Simplicity target code.
     debug_symbols: DebugSymbols,
-    /// Simfony call expression that is currently running.
-    active_simfony_call: Option<FallibleCall>,
-    /// Output from Simfony dbg! expressions, in order of occurrence.
+    /// simplicityhl call expression that is currently running.
+    active_simplicityhl_call: Option<FallibleCall>,
+    /// Output from simplicityhl dbg! expressions, in order of occurrence.
     debug_output: Vec<String>,
 }
 
@@ -86,7 +86,7 @@ impl Runner {
             input: vec![Value::unit()],
             output: vec![],
             debug_symbols: program.debug_symbols().clone(),
-            active_simfony_call: None,
+            active_simplicityhl_call: None,
             debug_output: vec![],
         }
     }
@@ -144,13 +144,16 @@ impl Runner {
                             if let Inner::AssertL(_, cmr) = expression.inner() {
                                 if let Some(tracked_call) = self.debug_symbols.get(cmr) {
                                     match tracked_call.map_value(
-                                        &simfony::value::StructuralValue::from(c.shallow_clone()),
+                                        &simplicityhl::value::StructuralValue::from(
+                                            c.shallow_clone(),
+                                        ),
                                     ) {
                                         Some(Either::Left(fallible_call)) => {
-                                            let replaced =
-                                                self.active_simfony_call.replace(fallible_call);
+                                            let replaced = self
+                                                .active_simplicityhl_call
+                                                .replace(fallible_call);
                                             debug_assert!(replaced.is_none());
-                                            self.tasks.push(Task::ResetActiveSimfonyCall);
+                                            self.tasks.push(Task::ResetActiveSimplicityHLCall);
                                         }
                                         Some(Either::Right(debug_value)) => {
                                             let s = format!(
@@ -237,7 +240,7 @@ impl Runner {
                     let a = self.output.pop().unwrap();
                     self.output.push(Value::product(a, b));
                 }
-                Task::ResetActiveSimfonyCall => self.active_simfony_call = None,
+                Task::ResetActiveSimplicityHLCall => self.active_simplicityhl_call = None,
             }
         }
 
@@ -247,11 +250,11 @@ impl Runner {
         Ok(())
     }
 
-    /// Try to return an error with Simfony debug information included.
+    /// Try to return an error with simplicityhl debug information included.
     /// Otherwise, return the original error.
     fn error(&self, error: ErrorKind) -> ErrorKind {
-        match &self.active_simfony_call {
-            Some(call) => ErrorKind::SimfonyCallFailed(call.clone()),
+        match &self.active_simplicityhl_call {
+            Some(call) => ErrorKind::SimplicityHLCallFailed(call.clone()),
             None => error,
         }
     }
@@ -259,8 +262,8 @@ impl Runner {
 
 #[cfg(test)]
 mod tests {
-    use simfony::elements::{hashes::Hash, secp256k1_zkp as secp256k1};
-    use simfony::CompiledProgram;
+    use simplicityhl::elements::{hashes::Hash, secp256k1_zkp as secp256k1};
+    use simplicityhl::CompiledProgram;
 
     use super::*;
     use crate::examples;

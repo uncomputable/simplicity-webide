@@ -3,21 +3,21 @@ use std::collections::HashMap;
 use crate::transaction::TxParams;
 use elements::hashes::{sha256, Hash};
 use elements::secp256k1_zkp as secp256k1;
-use simfony::elements::hashes::HashEngine;
-use simfony::num::U256;
-use simfony::simplicity::Preimage32;
-use simfony::str::WitnessName;
-use simfony::types::TypeConstructible;
-use simfony::value::ValueConstructible;
-use simfony::{elements, ResolvedType, Value};
+use simplicityhl::elements::hashes::HashEngine;
+use simplicityhl::num::U256;
+use simplicityhl::simplicity::Preimage32;
+use simplicityhl::str::WitnessName;
+use simplicityhl::types::TypeConstructible;
+use simplicityhl::value::ValueConstructible;
+use simplicityhl::{elements, ResolvedType, Value};
 
 #[derive(Clone, Copy, Debug)]
 pub struct Example {
     description: &'static str,
     program: &'static str,
-    compute_args: fn(&[secp256k1::XOnlyPublicKey], &[sha256::Hash]) -> simfony::Arguments,
+    compute_args: fn(&[secp256k1::XOnlyPublicKey], &[sha256::Hash]) -> simplicityhl::Arguments,
     compute_witness:
-        fn(&[secp256k1::Keypair], &[Preimage32], secp256k1::Message) -> simfony::WitnessValues,
+        fn(&[secp256k1::Keypair], &[Preimage32], secp256k1::Message) -> simplicityhl::WitnessValues,
     lock_time: u32,
     sequence: u32,
 }
@@ -36,7 +36,7 @@ impl Example {
         self,
         public_keys: &[secp256k1::XOnlyPublicKey],
         hashes: &[sha256::Hash],
-    ) -> simfony::Arguments {
+    ) -> simplicityhl::Arguments {
         (self.compute_args)(public_keys, hashes)
     }
 
@@ -45,7 +45,7 @@ impl Example {
         secret_keys: &[secp256k1::Keypair],
         preimages: &[Preimage32],
         sighash_all: secp256k1::Message,
-    ) -> simfony::WitnessValues {
+    ) -> simplicityhl::WitnessValues {
         (self.compute_witness)(secret_keys, preimages, sighash_all)
     }
 
@@ -65,8 +65,8 @@ impl Example {
 fn p2pk_args(
     public_keys: &[secp256k1::XOnlyPublicKey],
     _hashes: &[sha256::Hash],
-) -> simfony::Arguments {
-    simfony::Arguments::from(HashMap::from([(
+) -> simplicityhl::Arguments {
+    simplicityhl::Arguments::from(HashMap::from([(
         WitnessName::from_str_unchecked("ALICE_PUBLIC_KEY"),
         Value::u256(U256::from_byte_array(public_keys[0].serialize())),
     )]))
@@ -76,8 +76,8 @@ fn p2pk_witness(
     secret_keys: &[secp256k1::Keypair],
     _preimages: &[Preimage32],
     sighash_all: secp256k1::Message,
-) -> simfony::WitnessValues {
-    simfony::WitnessValues::from(HashMap::from([(
+) -> simplicityhl::WitnessValues {
+    simplicityhl::WitnessValues::from(HashMap::from([(
         WitnessName::from_str_unchecked("ALICE_SIGNATURE"),
         Value::byte_array(secret_keys[0].sign_schnorr(sighash_all).serialize()),
     )]))
@@ -99,9 +99,9 @@ The coins move if the person with the given public key signs the transaction."#,
 fn p2pkh_args(
     public_keys: &[secp256k1::XOnlyPublicKey],
     _hashes: &[sha256::Hash],
-) -> simfony::Arguments {
+) -> simplicityhl::Arguments {
     let pk_hash = sha256::Hash::hash(&public_keys[0].serialize());
-    simfony::Arguments::from(HashMap::from([(
+    simplicityhl::Arguments::from(HashMap::from([(
         WitnessName::from_str_unchecked("ALICE_PUBLIC_KEY_HASH"),
         Value::u256(U256::from_byte_array(pk_hash.to_byte_array())),
     )]))
@@ -111,9 +111,9 @@ fn p2pkh_witness(
     secret_keys: &[secp256k1::Keypair],
     _preimages: &[Preimage32],
     sighash_all: secp256k1::Message,
-) -> simfony::WitnessValues {
+) -> simplicityhl::WitnessValues {
     let alice_pk = secret_keys[0].x_only_public_key().0;
-    simfony::WitnessValues::from(HashMap::from([
+    simplicityhl::WitnessValues::from(HashMap::from([
         (
             WitnessName::from_str_unchecked("ALICE_PUBLIC_KEY"),
             Value::u256(U256::from_byte_array(alice_pk.serialize())),
@@ -153,8 +153,8 @@ fn main() {
 fn p2ms_args(
     public_keys: &[secp256k1::XOnlyPublicKey],
     _hashes: &[sha256::Hash],
-) -> simfony::Arguments {
-    simfony::Arguments::from(HashMap::from([
+) -> simplicityhl::Arguments {
+    simplicityhl::Arguments::from(HashMap::from([
         (
             WitnessName::from_str_unchecked("ALICE_PUBLIC_KEY"),
             Value::u256(U256::from_byte_array(public_keys[0].serialize())),
@@ -174,7 +174,7 @@ fn p2ms_witness(
     secret_keys: &[secp256k1::Keypair],
     _preimages: &[Preimage32],
     sighash_all: secp256k1::Message,
-) -> simfony::WitnessValues {
+) -> simplicityhl::WitnessValues {
     let alice_sig = Value::some(Value::byte_array(
         secret_keys[0].sign_schnorr(sighash_all).serialize(),
     ));
@@ -184,7 +184,7 @@ fn p2ms_witness(
     ));
     let ty = alice_sig.ty().clone();
     let signatures = Value::array([alice_sig, bob_sig, charlie_sig], ty);
-    simfony::WitnessValues::from(HashMap::from([(
+    simplicityhl::WitnessValues::from(HashMap::from([(
         WitnessName::from_str_unchecked("SIGNATURES_2_OF_3"),
         signatures,
     )]))
@@ -285,8 +285,8 @@ fn main() {
 fn htlc_args(
     public_keys: &[secp256k1::XOnlyPublicKey],
     hashes: &[sha256::Hash],
-) -> simfony::Arguments {
-    simfony::Arguments::from(HashMap::from([
+) -> simplicityhl::Arguments {
+    simplicityhl::Arguments::from(HashMap::from([
         (
             WitnessName::from_str_unchecked("ALICE_PUBLIC_KEY"),
             Value::u256(U256::from_byte_array(public_keys[0].serialize())),
@@ -306,7 +306,7 @@ fn htlc_witness(
     secret_keys: &[secp256k1::Keypair],
     preimages: &[Preimage32],
     sighash_all: secp256k1::Message,
-) -> simfony::WitnessValues {
+) -> simplicityhl::WitnessValues {
     let alice_sig = secret_keys[0].sign_schnorr(sighash_all);
     let complete_or_cancel = Value::left(
         Value::product(
@@ -315,7 +315,7 @@ fn htlc_witness(
         ),
         ResolvedType::byte_array(64),
     );
-    simfony::WitnessValues::from(HashMap::from([(
+    simplicityhl::WitnessValues::from(HashMap::from([(
         WitnessName::from_str_unchecked("COMPLETE_OR_CANCEL"),
         complete_or_cancel,
     )]))
@@ -371,8 +371,8 @@ fn main() {
 fn hodl_vault_args(
     public_keys: &[secp256k1::XOnlyPublicKey],
     _hashes: &[sha256::Hash],
-) -> simfony::Arguments {
-    simfony::Arguments::from(HashMap::from([
+) -> simplicityhl::Arguments {
+    simplicityhl::Arguments::from(HashMap::from([
         (
             WitnessName::from_str_unchecked("MIN_HEIGHT"),
             Value::u32(1000),
@@ -396,7 +396,7 @@ fn hodl_vault_witness(
     secret_keys: &[secp256k1::Keypair],
     _preimages: &[Preimage32],
     sighash_all: secp256k1::Message,
-) -> simfony::WitnessValues {
+) -> simplicityhl::WitnessValues {
     let mut witness_values = HashMap::new();
     let oracle_height = 1000;
     witness_values.insert(
@@ -421,7 +421,7 @@ fn hodl_vault_witness(
         WitnessName::from_str_unchecked("BOB_SIGNATURE"),
         Value::byte_array(secret_keys[1].sign_schnorr(sighash_all).serialize()),
     );
-    simfony::WitnessValues::from(witness_values)
+    simplicityhl::WitnessValues::from(witness_values)
 }
 
 const HOLD_VAULT: Example = Example {
@@ -470,8 +470,8 @@ fn main() {
 fn last_will_args(
     public_keys: &[secp256k1::XOnlyPublicKey],
     _hashes: &[sha256::Hash],
-) -> simfony::Arguments {
-    simfony::Arguments::from(HashMap::from([
+) -> simplicityhl::Arguments {
+    simplicityhl::Arguments::from(HashMap::from([
         (
             WitnessName::from_str_unchecked("ALICE_PUBLIC_KEY"),
             Value::u256(U256::from_byte_array(public_keys[0].serialize())),
@@ -491,13 +491,13 @@ fn last_will_witness(
     secret_keys: &[secp256k1::Keypair],
     _preimages: &[Preimage32],
     sighash_all: secp256k1::Message,
-) -> simfony::WitnessValues {
+) -> simplicityhl::WitnessValues {
     let alice_sig = Value::byte_array(secret_keys[0].sign_schnorr(sighash_all).serialize());
     let inherit_or_not = Value::left(
         alice_sig,
         ResolvedType::either(ResolvedType::byte_array(64), ResolvedType::byte_array(64)),
     );
-    simfony::WitnessValues::from(HashMap::from([(
+    simplicityhl::WitnessValues::from(HashMap::from([(
         WitnessName::from_str_unchecked("INHERIT_OR_NOT"),
         inherit_or_not,
     )]))
@@ -560,16 +560,16 @@ fn main() {
 fn empty_args(
     _public_keys: &[secp256k1::XOnlyPublicKey],
     _hashes: &[sha256::Hash],
-) -> simfony::Arguments {
-    simfony::Arguments::default()
+) -> simplicityhl::Arguments {
+    simplicityhl::Arguments::default()
 }
 
 fn empty_witness(
     _secret_keys: &[secp256k1::Keypair],
     _preimages: &[Preimage32],
     _sighash_all: secp256k1::Message,
-) -> simfony::WitnessValues {
-    simfony::WitnessValues::default()
+) -> simplicityhl::WitnessValues {
+    simplicityhl::WitnessValues::default()
 }
 
 const HASH_LOOP: Example = Example {

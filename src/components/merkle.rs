@@ -2,7 +2,7 @@ use std::sync::Arc;
 
 use js_sys::{Array, Object};
 use leptos::*;
-use simfony::simplicity;
+use simplicityhl::simplicity;
 use simplicity::dag::DagLike;
 use simplicity::dag::NoSharing;
 use simplicity::node;

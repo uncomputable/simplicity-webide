@@ -8,7 +8,7 @@ use leptos::{
     IntoView, NodeRef, RwSignal, Signal, SignalGet, SignalGetUntracked, SignalSet, SignalUpdate,
     SignalWith, View,
 };
-use simfony::{elements, simplicity};
+use simplicityhl::{elements, simplicity};
 
 use crate::components::copy_to_clipboard::CopyToClipboard;
 use crate::util::{Counter26, SigningKeys};

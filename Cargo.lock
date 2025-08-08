@@ -571,9 +571,9 @@ checksum = "290f1a1d9242c78d09ce40a5e87e7554ee637af1351968159f4952f028f75604"
 
 [[package]]
 name = "hex-conservative"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "30ed443af458ccb6d81c1e7e661545f94d3176752fb1df2f543b902a1e0f51e2"
+checksum = "212ab92002354b4819390025006c897e8140934349e8635c9b077f47b4dcbd20"
 
 [[package]]
 name = "hex-conservative"
@@ -934,9 +934,9 @@ checksum = "68354c5c6bd36d73ff3feceb05efa59b6acb7626617f4962be322a825e61f79a"
 
 [[package]]
 name = "miniscript"
-version = "12.2.0"
+version = "12.3.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "add2d4aee30e4291ce5cffa3a322e441ff4d4bc57b38c8d9bf0e94faa50ab626"
+checksum = "487906208f38448e186e3deb02f2b8ef046a9078b0de00bdb28bf4fb9b76951c"
 dependencies = [
  "bech32",
  "bitcoin",
@@ -1547,12 +1547,12 @@ dependencies = [
 [[package]]
 name = "simfony"
 version = "0.1.0"
-source = "git+https://github.com/uncomputable/simfony?rev=d5284014e9f67593e50b272f1f676ea8d09f6ec8#d5284014e9f67593e50b272f1f676ea8d09f6ec8"
+source = "git+https://github.com/BlockstreamResearch/simplicityhl?rev=d5284014e9f67593e50b272f1f676ea8d09f6ec8#d5284014e9f67593e50b272f1f676ea8d09f6ec8"
 dependencies = [
  "base64 0.21.7",
  "either",
  "getrandom",
- "hex-conservative 0.1.1",
+ "hex-conservative 0.1.2",
  "itertools 0.13.0",
  "miniscript",
  "pest",
@@ -1570,7 +1570,7 @@ dependencies = [
  "byteorder",
  "elements",
  "getrandom",
- "hex-conservative 0.1.1",
+ "hex-conservative 0.1.2",
  "miniscript",
  "santiago",
  "simplicity-sys",

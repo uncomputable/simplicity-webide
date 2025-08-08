@@ -4,7 +4,7 @@ use leptos::{
     component, create_rw_signal, use_context, view, For, IntoView, RwSignal, SignalGet,
     SignalUpdate, View,
 };
-use simfony::elements::hashes;
+use simplicityhl::elements::hashes;
 
 use crate::components::copy_to_clipboard::CopyToClipboard;
 use crate::util::{Counter26, HashedData};

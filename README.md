@@ -8,7 +8,19 @@ Simfony looks and feels like [Rust](https://www.rust-lang.org). Just how Rust co
 
 ## Develop the project
 
-### Install dependencies
+### Using Docker
+
+Build
+```
+docker build -t simplicity-webide .
+```
+
+Run and naviate to `http://localhost:8080` in your web browser.
+```
+docker run -p 8080:80 simplicity-webide
+```
+
+### Using Nix
 
 First install nix.
 

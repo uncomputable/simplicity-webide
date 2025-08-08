@@ -39,7 +39,7 @@ pub fn Footer() -> impl IntoView {
                         <a href="https://t.me/simplicity_community" class="footer-social-link">
                             <img src="images/telegram.svg" alt="Telegram Icon" class="footer-social-icon" />
                         </a>
-                        <a href="https://github.com/BlockstreamResearch/simfony" class="footer-social-link">
+                        <a href="https://github.com/BlockstreamResearch/simplicityhl" class="footer-social-link">
                             <img src="images/github.svg" alt="GitHub Icon" class="footer-social-icon" />
                         </a>
                     </div>

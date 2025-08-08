@@ -1,14 +1,26 @@
-# Simfony Web IDE
+# SimplicityHL Web IDE
 
-[Simfony](https://github.com/BlockstreamResearch/simfony) is a high-level language for writing Bitcoin smart contracts.
+[SimplicityHL](https://github.com/BlockstreamResearch/simplicityhl) is a high-level language for writing Bitcoin smart contracts.
 
-Simfony looks and feels like [Rust](https://www.rust-lang.org). Just how Rust compiles down to assembly language, Simfony compiles down to Simplicity bytecode. Developers write Simfony, full nodes execute Simplicity.
+SimplicityHL looks and feels like [Rust](https://www.rust-lang.org). Just how Rust compiles down to assembly language, SimplicityHL compiles down to Simplicity bytecode. Developers write SimplicityHL, full nodes execute Simplicity.
 
-[A live demo is running on GitHub pages](https://simfony.dev).
+[A live demo is running](https://ide.simplicity-lang.org).
 
 ## Develop the project
 
-### Install dependencies
+### Using Docker
+
+Build
+```
+docker build -t simplicity-webide .
+```
+
+Run and naviate to `http://localhost:8080` in your web browser.
+```
+docker run -p 8080:80 simplicity-webide
+```
+
+### Using Nix
 
 First install nix.
 

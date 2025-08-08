@@ -2,10 +2,10 @@ use std::sync::Arc;
 
 use elements::confidential;
 use elements::hashes::Hash;
-use simfony::simplicity::jet::Elements;
-use simfony::simplicity::RedeemNode;
-use simfony::{elements, simplicity};
 use simplicity::jet::elements::{ElementsEnv, ElementsUtxo};
+use simplicityhl::simplicity::jet::Elements;
+use simplicityhl::simplicity::RedeemNode;
+use simplicityhl::{elements, simplicity};
 
 use crate::util;
 

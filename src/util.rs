@@ -3,13 +3,13 @@ use std::fmt;
 use elements::hashes::{sha256, Hash};
 use elements::secp256k1_zkp as secp256k1;
 use secp256k1::rand::{self, Rng, SeedableRng};
-use simfony::num::U256;
-use simfony::simplicity::Preimage32;
-use simfony::{elements, simplicity};
 use simplicity::dag::{DagLike, MaxSharing, NoSharing};
 use simplicity::jet::Elements;
 use simplicity::node::Inner;
 use simplicity::{node, RedeemNode};
+use simplicityhl::num::U256;
+use simplicityhl::simplicity::Preimage32;
+use simplicityhl::{elements, simplicity};
 
 #[derive(Clone, Debug)]
 pub struct SigningKeys {

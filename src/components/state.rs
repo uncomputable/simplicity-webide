@@ -1,5 +1,5 @@
 use leptos::{use_context, SignalGetUntracked, SignalWithUntracked};
-use simfony::num::U256;
+use simplicityhl::num::U256;
 use web_sys::window;
 
 use crate::components::program_window::Program;

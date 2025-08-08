@@ -1,4 +1,3 @@
-use simfony::simplicity;
 use simplicity::ffi::c_jets::frame_ffi::{c_readBit, c_writeBit};
 use simplicity::ffi::c_jets::uword_width;
 use simplicity::ffi::ffi::UWORD;
@@ -6,6 +5,7 @@ use simplicity::ffi::CFrameItem;
 use simplicity::jet::Jet;
 use simplicity::types::Final;
 use simplicity::Value;
+use simplicityhl::simplicity;
 
 pub struct JetFailed;
 

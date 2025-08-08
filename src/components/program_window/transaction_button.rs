@@ -1,7 +1,7 @@
 use elements::pset::serialize::Serialize;
 use hex_conservative::DisplayHex;
 use leptos::{component, use_context, view, with, IntoView};
-use simfony::elements;
+use simplicityhl::elements;
 
 use crate::components::copy_to_clipboard::CopyToClipboard;
 use crate::components::program_window::Program;

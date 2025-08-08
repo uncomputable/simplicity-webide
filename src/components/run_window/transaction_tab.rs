@@ -5,8 +5,8 @@ use leptos::{
     component, create_rw_signal, ev, event_target_value, use_context, view, with, Children,
     IntoView, RwSignal, Signal, SignalGetUntracked, SignalSet, SignalUpdate,
 };
-use simfony::{elements, simplicity};
 use simplicity::jet::elements::ElementsEnv;
+use simplicityhl::{elements, simplicity};
 
 use crate::components::program_window::Program;
 use crate::components::string_box::ErrorBox;

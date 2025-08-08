@@ -6,10 +6,10 @@ use leptos::{
     use_context, view, IntoView, RwSignal, Signal, SignalGetUntracked, SignalSet, SignalUpdate,
     SignalWith, SignalWithUntracked,
 };
-use simfony::parse::ParseFromStr;
-use simfony::simplicity::jet::elements::ElementsEnv;
-use simfony::{elements, simplicity};
-use simfony::{CompiledProgram, SatisfiedProgram, WitnessValues};
+use simplicityhl::parse::ParseFromStr;
+use simplicityhl::simplicity::jet::elements::ElementsEnv;
+use simplicityhl::{elements, simplicity};
+use simplicityhl::{CompiledProgram, SatisfiedProgram, WitnessValues};
 
 use crate::components::copy_to_clipboard::CopyToClipboard;
 use crate::function::Runner;
@@ -64,7 +64,7 @@ impl Program {
         }
         self.text.with_untracked(|text| {
             self.cached_text.set(text.clone());
-            let compiled = simfony::Arguments::parse_from_str(text)
+            let compiled = simplicityhl::Arguments::parse_from_str(text)
                 .map_err(|error| error.to_string())
                 .and_then(|args| CompiledProgram::new(text.as_str(), args));
             let cmr = compiled
